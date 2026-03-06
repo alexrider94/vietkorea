@@ -1,109 +1,74 @@
-# VietKorea Sprint Plan (3x2 weeks)
+# VietKorea Sprint Plan (Sprint 2-5)
 
-## Current baseline
-- Current app is Expo starter template with 2 tabs:
-  - `app/(tabs)/index.tsx`
-  - `app/(tabs)/explore.tsx`
-- Need to move from starter UI to production IA based on Figma nodes:
-  - Home `1:2`
-  - University `21:2`
-  - Community `21:356`
-  - Profile `21:1926`
-
-## Team assumptions
-- 2 React Native engineers + 1 designer + 1 PM
-- Sprint cadence: 2 weeks
-- Capacity target: ~40-50 story points per sprint (adjust after sprint 1)
-
-## Sprint 1: App foundation + Home + Navigation
-### Sprint goal
-Replace starter scaffold with production app shell and deliver Home MVP.
-
-### Scope
-- Routing and information architecture
-  - Create tab routes for `home`, `community`, `university`, `profile`
-  - Replace starter `index/explore` flow
-- Shared design system primitives
-  - Theme tokens (colors, spacing, radius, typography)
-  - Reusable UI blocks: card, chip, icon button, section header
-- Home page MVP
-  - Header, hero search, top universities carousel, quick links, community preview list
-  - Bottom navigation aligned to Figma
-- Static mock data layer for Home + University preview cards
-
-### Exit criteria
-- User can open app and navigate across 4 tabs
-- Home visually matches Figma structure and hierarchy
-- No starter-template content visible in core flow
+## Summary
+- Planning horizon: Sprint 2 through Sprint 5
+- Baseline assumption: Sprint 1 foundation is complete
+- Team baseline: 2 RN engineers, 1 designer, 1 PM
+- Capacity baseline: 45 SP target, 15% buffer, 38 SP committed
 
 ## Sprint 2: University discovery and detail
-### Sprint goal
-Deliver searchable university browsing with filter and detail flow.
+### Goal
+Deliver end-to-end university search, filter, and detail flow.
 
-### Scope
-- University list screen
-  - Search input + chips
-  - Featured carousel and list cards
-- Filter bottom sheets
-  - Region selector
-  - Major selector
-  - Apply/reset behavior
-- University detail screen
-  - Hero, stats, summary, programs, scholarships, location block
-- Navigation links from Home and University list to detail
+### Committed scope
+- University list with search, filter chips, featured carousel, paginated cards
+- Region and major filter sheets with apply/reset session persistence
+- University detail with hero, stats, programs, scholarships, and location
+- Home and University routes wired to detail path
+- Loading, empty, and error states for university journey
 
 ### Exit criteria
-- User can search/filter universities and open detail
-- Filter apply/reset works with predictable state
-- University core journey is end-to-end testable
+- Search/filter/detail works from both Home and University tab
+- Filter behavior is deterministic for apply/reset/back navigation
+- Core university journey is smoke-testable on iOS/Android
 
-## Sprint 3: Community + Profile + hardening
-### Sprint goal
-Deliver engagement surfaces and account/settings center for MVP launch.
+## Sprint 3: Community and Profile completion
+### Goal
+Ship engagement and account-center flows for MVP completion.
 
-### Scope
-- Community
-  - Feed, category tabs, post card variants
-  - Post detail, comments thread, comment input bar
-  - Floating create-post entry
-- Profile
-  - Profile overview and stats
-  - Menu sections (account/activity/settings/support)
-  - Subpages: edit profile, notifications, help center, about
-- App quality hardening
-  - Loading/empty/error states
-  - Basic analytics events (tab_open, university_detail_open, post_open, comment_submit)
-  - Performance pass on long lists and media cards
+### Committed scope
+- Community feed with category chips and card variants
+- Post detail with comment thread and comment submit
+- Create-post entry with draft-safe input
+- Profile hub sections and subpages (edit/notifications/help/about)
 
 ### Exit criteria
-- Community and Profile routes are production-ready for MVP
-- Core analytics events emitted
-- QA checklist passed for iOS and Android smoke tests
+- Community flow works feed -> detail -> comment submit
+- Profile flow works hub -> subpages -> back navigation
+- MVP routes are complete and demoable
 
-## Cross-sprint backlog (priority)
-1. Navigation and route migration from starter template
-2. Home page vertical slice
-3. University filters + detail
-4. Community feed + post detail + comments
-5. Profile hub + edit/notifications/help/about
-6. Analytics, QA, and launch checklist
+## Sprint 4: Reliability and analytics hardening
+### Goal
+Stabilize operations and measurement before growth iteration.
 
-## Dependencies
-- Design: final token values and interaction notes for bottom sheets, tabs, and chips
-- Product: language behavior decisions (mixed bilingual vs locale-based primary)
-- Data/API: endpoint contracts for universities, posts, comments, and user profile
+### Committed scope
+- Typed analytics model and instrumentation for key funnel events
+- Observability baseline: error boundary, structured logging, error counter alerts
+- Performance pass: list virtualization and optimized image rendering
+- QA artifacts and regression checklist coverage
 
-## Risks and controls
-- Risk: Large UI surface in short timeline
-  - Control: ship static data first, then wire API contracts incrementally
-- Risk: Inconsistent visual system across tabs
-  - Control: enforce shared primitives and single token source early (Sprint 1)
-- Risk: Scroll performance on feed/detail screens
-  - Control: use list virtualization and defer heavy media work until visible
+### Exit criteria
+- Core funnel events are emitted and inspectable
+- Crash/error paths are captured with retry handling
+- Critical-path regression checklist is runnable
 
-## Definition of done (all sprints)
-- Route accessible from intended navigation entry
-- Empty/loading/error states implemented
-- TypeScript and lint pass
-- Visual check against Figma structure and spacing intent
-- QA notes recorded for iOS + Android
+## Sprint 5: Post-hardening growth iteration
+### Goal
+Improve conversion/engagement via controlled, measurable UX improvements.
+
+### Committed scope
+- Feature-flag framework and experiment hooks
+- Community engagement prompts and saved-post behaviors
+- University shortlist and comparison-support entry points
+- KPI visibility artifact in app session (About analytics summary)
+
+### Exit criteria
+- Growth surfaces are shipped behind flags
+- Session-level KPI signals are visible for analysis
+- Sprint 6+ backlog can be prioritized from instrumentation and feedback
+
+## Contract references
+- API contracts: `docs/api-contracts.md`
+- Scenario matrix: `docs/testing/scenarios.md`
+- Regression checklist: `docs/testing/regression-checklist.md`
+- Implementation mapping: `docs/planning/sprint-2-5-execution.md`
